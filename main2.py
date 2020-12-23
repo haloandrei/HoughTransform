@@ -5,21 +5,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-folderName = 'line/'
-imageName = 'random.png'
-
 #----------------------------------------------------------------------------------------#
 # Step 1: read image
-color = 255
 
-img = imageio.imread(imageName)
+img = imageio.imread('pentagon.png')
 
 print('image shape: ', img.shape)
-print(img[64,64,0],img[64,64,1],img[64,64,2],img[64,64,3])
 
 plt.imshow(img, )
 
-plt.savefig(folderName + "image.png",bbox_inches='tight')
+plt.savefig("image.png",bbox_inches='tight')
 
 plt.close()
 
@@ -44,7 +39,7 @@ hough_space = np.zeros((r_dim,theta_dim))
 
 for x in range(x_max):
     for y in range(y_max):
-        if img[x,y,0] == color: continue
+        if img[x,y,0] == 255: continue
         for itheta in range(theta_dim):
             theta = 1.0 * itheta * theta_max / theta_dim
             r = x * math.cos(theta) + y * math.sin(theta)
@@ -67,7 +62,7 @@ plt.xlabel(r'Theta')
 plt.ylabel(r'r')
 plt.title('Hough Space')
 
-plt.savefig(folderName + "hough_space_r_theta.png",bbox_inches='tight')
+plt.savefig("hough_space_r_theta.png",bbox_inches='tight')
 
 plt.close()
 
@@ -131,11 +126,11 @@ print(x)
 print(y)
 
 plt.imshow(hough_space, origin='lower')
-plt.savefig(folderName + 'hough_space_i_j.png', bbox_inches = 'tight')
+plt.savefig('hough_space_i_j.png', bbox_inches = 'tight')
 
 plt.autoscale(False)
 plt.plot(x,y, 'ro')
-plt.savefig(folderName + 'hough_space_maximas.png', bbox_inches = 'tight')
+plt.savefig('hough_space_maximas.png', bbox_inches = 'tight')
 
 plt.close()
 
@@ -163,7 +158,7 @@ for i,j in zip(y, x):
 
     ax.plot(px,py, linewidth=10)
 
-    plt.savefig(folderName + "image_line_"+ "%02d" % line_index +".png",bbox_inches='tight')
+    plt.savefig("image_line_"+ "%02d" % line_index +".png",bbox_inches='tight')
 
     #plt.show()
 
